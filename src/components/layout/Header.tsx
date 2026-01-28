@@ -1,8 +1,17 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { ShoppingCart, Menu, X, User } from "lucide-react";
+import { ShoppingCart, Menu, X, User, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useCart } from "@/contexts/CartContext";
+import { useAuth } from "@/contexts/AuthContext";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -15,7 +24,12 @@ const navLinks = [
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
-  const cartItemCount = 0; // Will be connected to cart state later
+  const { itemCount, openCart } = useCart();
+  const { user, role, signOut } = useAuth();
+
+  const handleSignOut = async () => {
+    await signOut();
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full glass border-b border-border">
@@ -60,27 +74,70 @@ export function Header() {
 
           {/* Right Actions */}
           <div className="flex items-center gap-2">
-            <Link to="/cart" className="relative">
-              <Button variant="ghost" size="icon" className="relative">
-                <ShoppingCart className="h-5 w-5" />
-                {cartItemCount > 0 && (
-                  <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center font-medium">
-                    {cartItemCount}
-                  </span>
-                )}
-              </Button>
-            </Link>
+            {/* Cart Button */}
+            <Button
+              variant="ghost"
+              size="icon"
+              className="relative"
+              onClick={openCart}
+            >
+              <ShoppingCart className="h-5 w-5" />
+              {itemCount > 0 && (
+                <motion.span
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-primary text-primary-foreground text-xs flex items-center justify-center font-medium"
+                >
+                  {itemCount > 99 ? "99+" : itemCount}
+                </motion.span>
+              )}
+            </Button>
 
-            <Link to="/login" className="hidden sm:block">
-              <Button variant="ghost" size="icon">
-                <User className="h-5 w-5" />
-              </Button>
-            </Link>
+            {/* User Menu */}
+            {user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="icon" className="hidden sm:flex">
+                    <User className="h-5 w-5" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-48">
+                  <div className="px-2 py-1.5">
+                    <p className="text-sm font-medium truncate">{user.email}</p>
+                    <p className="text-xs text-muted-foreground capitalize">{role}</p>
+                  </div>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild>
+                    <Link to="/orders">My Orders</Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <Link to="/profile">Profile</Link>
+                  </DropdownMenuItem>
+                  {role === "admin" && (
+                    <>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem asChild>
+                        <Link to="/admin">Admin Dashboard</Link>
+                      </DropdownMenuItem>
+                    </>
+                  )}
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={handleSignOut} className="text-destructive">
+                    <LogOut className="h-4 w-4 mr-2" />
+                    Sign out
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Link to="/login" className="hidden sm:block">
+                <Button variant="ghost" size="icon">
+                  <User className="h-5 w-5" />
+                </Button>
+              </Link>
+            )}
 
             <Link to="/shop" className="hidden sm:block">
-              <Button className="btn-scale rounded-xl">
-                Order Now
-              </Button>
+              <Button className="btn-scale rounded-xl">Order Now</Button>
             </Link>
 
             {/* Mobile Menu Toggle */}
@@ -121,15 +178,45 @@ export function Header() {
                 </Link>
               ))}
               <div className="flex gap-2 mt-2">
-                <Link to="/login" className="flex-1" onClick={() => setMobileMenuOpen(false)}>
-                  <Button variant="outline" className="w-full rounded-xl">
-                    Login
-                  </Button>
-                </Link>
-                <Link to="/shop" className="flex-1" onClick={() => setMobileMenuOpen(false)}>
-                  <Button className="w-full rounded-xl">
-                    Order Now
-                  </Button>
+                {user ? (
+                  <>
+                    <Link
+                      to="/orders"
+                      className="flex-1"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <Button variant="outline" className="w-full rounded-xl">
+                        My Orders
+                      </Button>
+                    </Link>
+                    <Button
+                      variant="outline"
+                      className="rounded-xl"
+                      onClick={() => {
+                        handleSignOut();
+                        setMobileMenuOpen(false);
+                      }}
+                    >
+                      <LogOut className="h-4 w-4" />
+                    </Button>
+                  </>
+                ) : (
+                  <Link
+                    to="/login"
+                    className="flex-1"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <Button variant="outline" className="w-full rounded-xl">
+                      Login
+                    </Button>
+                  </Link>
+                )}
+                <Link
+                  to="/shop"
+                  className="flex-1"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <Button className="w-full rounded-xl">Order Now</Button>
                 </Link>
               </div>
             </nav>
