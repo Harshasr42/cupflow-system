@@ -36,10 +36,10 @@ export default function About() {
             animate={{ opacity: 1, y: 0 }}
             className="max-w-3xl mx-auto text-center"
           >
-            <h1 className="text-4xl lg:text-5xl font-bold mb-6">About PaperCup Pro</h1>
+            <h1 className="text-4xl lg:text-5xl font-bold mb-6">About RRR Cups</h1>
             <p className="text-xl text-muted-foreground">
-              India's trusted manufacturer of premium paper cups. We combine quality
-              craftsmanship with sustainable practices to deliver the best disposable cups for
+              India's trusted manufacturer of premium paper cups, tissues, and paper plates. We combine 
+              quality craftsmanship with sustainable practices to deliver the best disposable products for
               your business.
             </p>
           </motion.div>
@@ -78,21 +78,21 @@ export default function About() {
               <h2 className="text-3xl font-bold mb-6">Our Story</h2>
               <div className="space-y-4 text-muted-foreground">
                 <p>
-                  PaperCup Pro was founded in 2010 with a simple mission: to provide
-                  high-quality, affordable paper cups to businesses across India. What started as
+                  RRR Cups was founded in 2010 with a simple mission: to provide
+                  high-quality, affordable paper cups, tissues, and paper plates to businesses across India. What started as
                   a small manufacturing unit in Gujarat has grown into one of the region's most
-                  trusted paper cup suppliers.
+                  trusted disposable product suppliers.
                 </p>
                 <p>
                   Our founder, having worked in the hospitality industry for over a decade,
                   understood the challenges businesses face in sourcing reliable disposable
-                  products. This firsthand experience drove the creation of PaperCup Pro – a
+                  products. This firsthand experience drove the creation of RRR Cups – a
                   company built on the principles of quality, reliability, and customer service.
                 </p>
                 <p>
                   Today, we serve over 500 businesses including cafes, restaurants, corporate
                   offices, and event management companies. Our state-of-the-art manufacturing
-                  facility produces millions of cups each month, all meeting the highest quality
+                  facility produces millions of products each month, all meeting the highest quality
                   and safety standards.
                 </p>
               </div>

@@ -7,6 +7,8 @@ import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { supabase } from "@/integrations/supabase/client";
 import { useCart } from "@/contexts/CartContext";
+import { ProductTypeToggle } from "@/components/home/ProductTypeToggle";
+import { useProductType, PRODUCT_TYPE_CONFIG, ProductType } from "@/contexts/ProductTypeContext";
 import { Link } from "react-router-dom";
 
 interface Category {
@@ -141,8 +143,13 @@ export default function Shop() {
     <Layout>
       <div className="min-h-screen bg-background">
         {/* Header */}
-        <div className="bg-gradient-to-r from-primary/5 via-accent/5 to-primary/5 py-12">
+         <div className="bg-gradient-to-r from-primary/5 via-accent/5 to-primary/5 py-12">
           <div className="container mx-auto px-4">
+            {/* Product Type Toggle */}
+            <div className="mb-8">
+              <ProductTypeToggle />
+            </div>
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -152,7 +159,7 @@ export default function Shop() {
                 Our Products
               </h1>
               <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-                Premium quality paper cups for all your beverage needs. Bulk orders welcome.
+                Premium quality paper cups, tissues, and plates for all your needs. Bulk orders welcome.
               </p>
             </motion.div>
 

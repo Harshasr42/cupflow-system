@@ -13,6 +13,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
 import { useToast } from "@/hooks/use-toast";
+import { CheckoutRecommendations } from "@/components/checkout/CheckoutRecommendations";
 
 interface Address {
   id: string;
@@ -604,7 +605,7 @@ export default function Checkout() {
                         <p className="text-muted-foreground mb-2">
                           Scan the QR code or use the UPI ID below
                         </p>
-                        <p className="font-mono font-semibold text-lg">papercuppro@upi</p>
+                        <p className="font-mono font-semibold text-lg">rrrcups@upi</p>
                         <p className="text-2xl font-bold mt-4">₹{total.toFixed(2)}</p>
                       </div>
 
@@ -646,7 +647,9 @@ export default function Checkout() {
           </div>
 
           {/* Order Summary Sidebar */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-1 space-y-6">
+            {/* Smart Recommendations */}
+            <CheckoutRecommendations />
             <Card className="sticky top-24">
               <CardHeader>
                 <CardTitle>Order Summary</CardTitle>
