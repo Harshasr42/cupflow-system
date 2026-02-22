@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { CartProvider } from "@/contexts/CartContext";
+import { ProductTypeProvider } from "@/contexts/ProductTypeContext";
 import { CartDrawer } from "@/components/cart/CartDrawer";
 import Index from "./pages/Index";
 import Shop from "./pages/Shop";
@@ -31,6 +32,7 @@ const App = () => (
       <BrowserRouter>
         <AuthProvider>
           <CartProvider>
+            <ProductTypeProvider>
             <Toaster />
             <Sonner />
             <CartDrawer />
@@ -53,6 +55,7 @@ const App = () => (
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
+            </ProductTypeProvider>
           </CartProvider>
         </AuthProvider>
       </BrowserRouter>

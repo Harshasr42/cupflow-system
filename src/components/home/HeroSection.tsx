@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ProductTypeToggle } from "./ProductTypeToggle";
+import { useProductType } from "@/contexts/ProductTypeContext";
 
 const heroFeatures = [
   "GST Registered & Compliant",
@@ -11,6 +13,8 @@ const heroFeatures = [
 ];
 
 export function HeroSection() {
+  const { config, activeType } = useProductType();
+
   return (
     <section className="relative overflow-hidden bg-hero-gradient">
       {/* Background Pattern */}
@@ -20,6 +24,15 @@ export function HeroSection() {
       </div>
 
       <div className="container mx-auto px-4 py-20 lg:py-32 relative">
+        {/* Product Type Toggle */}
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-10"
+        >
+          <ProductTypeToggle />
+        </motion.div>
+
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <motion.div
@@ -44,12 +57,13 @@ export function HeroSection() {
 
             {/* Headline */}
             <motion.h1
+              key={activeType}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-6"
             >
-              Premium Paper Cups for{" "}
+              {config.heroTitle} for{" "}
               <span className="relative">
                 <span className="relative z-10">Every Business</span>
                 <svg
@@ -70,13 +84,13 @@ export function HeroSection() {
 
             {/* Subheadline */}
             <motion.p
+              key={`sub-${activeType}`}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
               className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto lg:mx-0"
             >
-              Quality paper cups for cafes, restaurants, events, and bulk orders. 
-              GST-compliant invoicing, competitive pricing, and reliable delivery nationwide.
+              {config.description}. GST-compliant invoicing, competitive pricing, and reliable delivery nationwide.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -129,26 +143,31 @@ export function HeroSection() {
             className="relative hidden lg:block"
           >
             <div className="grid grid-cols-2 gap-4">
-              {/* Large Card */}
-              <div className="col-span-2 bento-item h-48 flex items-center justify-center bg-gradient-to-br from-accent to-secondary">
+              {/* Large Card - changes with product type */}
+              <motion.div
+                key={`hero-card-${activeType}`}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="col-span-2 bento-item h-48 flex items-center justify-center bg-gradient-to-br from-accent to-secondary"
+              >
                 <div className="text-center">
-                  <div className="text-6xl mb-2">☕</div>
-                  <p className="font-semibold text-foreground">Hot Beverage Cups</p>
+                  <div className="text-6xl mb-2">{config.emoji}</div>
+                  <p className="font-semibold text-foreground">{config.label}</p>
                 </div>
-              </div>
+              </motion.div>
               
               {/* Small Cards */}
               <div className="bento-item h-32 flex items-center justify-center bg-gradient-to-br from-lavender to-accent">
                 <div className="text-center">
-                  <div className="text-4xl mb-1">🥤</div>
-                  <p className="text-sm font-medium text-foreground">Cold Cups</p>
+                  <div className="text-4xl mb-1">🧻</div>
+                  <p className="text-sm font-medium text-foreground">Tissues</p>
                 </div>
               </div>
               
               <div className="bento-item h-32 flex items-center justify-center bg-gradient-to-br from-secondary to-lavender">
                 <div className="text-center">
-                  <div className="text-4xl mb-1">🎨</div>
-                  <p className="text-sm font-medium text-foreground">Custom Print</p>
+                  <div className="text-4xl mb-1">🍽️</div>
+                  <p className="text-sm font-medium text-foreground">Paper Plates</p>
                 </div>
               </div>
               
@@ -165,7 +184,7 @@ export function HeroSection() {
                   </div>
                   <div className="text-center px-4">
                     <div className="text-2xl font-bold">10M+</div>
-                    <div className="text-xs text-primary-foreground/70">Cups Produced</div>
+                    <div className="text-xs text-primary-foreground/70">Units Produced</div>
                   </div>
                 </div>
               </div>

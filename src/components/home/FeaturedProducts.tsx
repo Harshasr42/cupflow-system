@@ -8,7 +8,7 @@ const products = [
   {
     id: "1",
     name: "Classic Hot Cup",
-    category: "Hot Cups",
+    category: "Paper Cups",
     size: "250ml",
     price: 3.5,
     originalPrice: 4.0,
@@ -17,18 +17,18 @@ const products = [
   },
   {
     id: "2",
-    name: "Cold Beverage Cup",
-    category: "Cold Cups",
-    size: "350ml",
-    price: 4.0,
+    name: "Premium Tissue Roll",
+    category: "Tissues",
+    size: "100 sheets",
+    price: 12.0,
     originalPrice: null,
-    image: "🥤",
-    badge: null,
+    image: "🧻",
+    badge: "New",
   },
   {
     id: "3",
     name: "Ripple Wall Cup",
-    category: "Ripple Cups",
+    category: "Paper Cups",
     size: "300ml",
     price: 5.5,
     originalPrice: 6.0,
@@ -37,12 +37,12 @@ const products = [
   },
   {
     id: "4",
-    name: "Custom Print Cup",
-    category: "Custom",
-    size: "200ml",
-    price: 6.0,
+    name: "Party Paper Plate",
+    category: "Paper Plates",
+    size: "9 inch",
+    price: 4.0,
     originalPrice: null,
-    image: "🎨",
+    image: "🍽️",
     badge: "New",
   },
 ];
@@ -77,11 +77,11 @@ export function FeaturedProducts() {
             Our Products
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mt-2 mb-4">
-            Featured Paper Cups
+            Featured Products
           </h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Browse our most popular paper cups. Quality materials, competitive pricing, 
-            and bulk discounts available for all orders.
+            Browse our most popular paper cups, tissues, and paper plates. Quality materials, 
+            competitive pricing, and bulk discounts available for all orders.
           </p>
         </motion.div>
 

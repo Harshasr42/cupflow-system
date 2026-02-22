@@ -129,6 +129,22 @@ export default function AdminOrders() {
         description: `Order status changed to ${newStatus}`,
       });
       fetchOrders();
+
+      // Send email notification for confirmed/shipped
+      if (newStatus === "confirmed" || newStatus === "shipped") {
+        supabase.functions.invoke("order-notification", {
+          body: { orderId, newStatus },
+        }).then(({ error: notifError }) => {
+          if (notifError) {
+            console.error("Notification error:", notifError);
+          } else {
+            toast({
+              title: "Email sent",
+              description: `Customer notified about ${newStatus} status`,
+            });
+          }
+        });
+      }
     }
   };
 

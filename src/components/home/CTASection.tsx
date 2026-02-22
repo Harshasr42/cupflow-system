@@ -28,7 +28,7 @@ export function CTASection() {
             </h2>
             
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Join 500+ businesses who trust PaperCup Pro for their paper cup needs. 
+              Join 500+ businesses who trust RRR Cups for their paper cups, tissues, and plate needs. 
               Bulk discounts, GST invoices, and fast delivery guaranteed.
             </p>
 

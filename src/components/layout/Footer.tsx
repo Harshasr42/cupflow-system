@@ -11,8 +11,8 @@ const footerLinks = {
   products: [
     { name: "Hot Cups", href: "/shop?category=hot" },
     { name: "Cold Cups", href: "/shop?category=cold" },
-    { name: "Ripple Cups", href: "/shop?category=ripple" },
-    { name: "Custom Print", href: "/shop?category=custom" },
+    { name: "Tissues", href: "/shop?category=tissues" },
+    { name: "Paper Plates", href: "/shop?category=plates" },
   ],
   legal: [
     { name: "Privacy Policy", href: "/privacy" },
@@ -31,13 +31,13 @@ export function Footer() {
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center gap-2 mb-4">
               <div className="h-10 w-10 rounded-xl bg-primary-foreground flex items-center justify-center">
-                <span className="text-primary font-bold text-lg">P</span>
+                <span className="text-primary font-bold text-sm tracking-tight">RRR</span>
               </div>
-              <span className="font-display font-bold text-xl">PaperCup Pro</span>
+              <span className="font-display font-bold text-xl">RRR Cups</span>
             </Link>
             <p className="text-primary-foreground/70 mb-6 max-w-sm">
-              India's trusted paper cup manufacturer. Quality cups for cafes, 
-              restaurants, and events. GST registered, bulk discounts available.
+              India's trusted manufacturer of premium paper cups, tissues, and paper plates.
+              Quality products for cafes, restaurants, and events. GST registered, bulk discounts available.
             </p>
             
             <div className="space-y-3">
@@ -45,9 +45,9 @@ export function Footer() {
                 <Phone className="h-4 w-4" />
                 <span>+91 98765 43210</span>
               </a>
-              <a href="mailto:info@papercuppro.com" className="flex items-center gap-3 text-primary-foreground/80 hover:text-primary-foreground transition-colors">
+              <a href="mailto:info@rrrcups.com" className="flex items-center gap-3 text-primary-foreground/80 hover:text-primary-foreground transition-colors">
                 <Mail className="h-4 w-4" />
-                <span>info@papercuppro.com</span>
+                <span>info@rrrcups.com</span>
               </a>
               <div className="flex items-start gap-3 text-primary-foreground/80">
                 <MapPin className="h-4 w-4 mt-0.5" />
@@ -111,7 +111,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-primary-foreground/10 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-primary-foreground/60 text-sm">
-            © {new Date().getFullYear()} PaperCup Pro. All rights reserved. GST: 27AAAAA0000A1Z5
+            © {new Date().getFullYear()} RRR Cups. All rights reserved. GST: 27AAAAA0000A1Z5
           </p>
           
           <div className="flex items-center gap-4">

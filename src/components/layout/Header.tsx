@@ -39,13 +39,14 @@ export function Header() {
           <Link to="/" className="flex items-center gap-2">
             <div className="relative">
               <div className="h-10 w-10 rounded-xl bg-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-lg">P</span>
+                <span className="text-primary-foreground font-bold text-sm tracking-tight">RRR</span>
               </div>
               <div className="absolute -bottom-1 -right-1 h-4 w-4 rounded-full bg-accent border-2 border-background" />
             </div>
-            <span className="font-display font-bold text-xl text-foreground hidden sm:block">
-              PaperCup Pro
-            </span>
+            <div className="hidden sm:flex flex-col leading-tight">
+              <span className="font-display font-bold text-lg text-foreground tracking-tight">RRR Cups</span>
+              <span className="text-[10px] text-muted-foreground -mt-0.5 tracking-widest uppercase">Cups · Tissues · Plates</span>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
